@@ -24,14 +24,12 @@ export default class Categorias extends Component {
           <label
             htmlFor={ cat.id }
             key={ cat.id }
-            data-testid="category"
             name="categorys-data"
+            data-testid="category"
           >
             <input
               type="radio"
-              data-testid="category"
               name="categorys-data"
-              value={ cat.name }
               id={ cat.id }
             />
             { cat.name }
