@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Search from './pages/Home';
+import Card from './pages/Card';
 import './App.css';
 
 function App() {
@@ -9,6 +10,7 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={ Search } />
+          <Route path="/card" component={ Card } />
         </Switch>
       </BrowserRouter>
     </div>
