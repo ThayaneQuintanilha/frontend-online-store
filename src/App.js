@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Search from './pages/Home';
 import Card from './pages/Card';
+import Categorias from './components/Categorias';
 import './App.css';
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
           <Route path="/card" component={ Card } />
         </Switch>
       </BrowserRouter>
+      <Categorias />
     </div>
   );
 }
