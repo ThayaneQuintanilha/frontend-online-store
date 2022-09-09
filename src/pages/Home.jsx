@@ -5,7 +5,7 @@ import { getProductsFromCategoryAndQuery } from '../services/api';
 export default class Home extends Component {
   state = {
     inputValue: '',
-    categorias: [],
+    inputCategory: [],
     validation: false,
   };
 
@@ -22,16 +22,15 @@ export default class Home extends Component {
 
   handleClick = async () => {
     const { inputValue } = this.state;
-    const api = await getProductsFromCategoryAndQuery(inputValue);
+    const api = await getProductsFromCategoryAndQuery(undefined, inputValue);
     this.setState({
-      categorias: api.results,
+      inputCategory: api.results,
       validation: true,
     });
-    console.log(api.results);
   };
 
   render() {
-    const { inputValue, categorias, validation } = this.state;
+    const { inputValue, inputCategory, validation } = this.state;
 
     return (
       <div>
@@ -67,19 +66,21 @@ export default class Home extends Component {
             Digite algum termo de pesquisa ou escolha uma categoria.
           </p>
         </label>
+
         <section>
           {validation === true ? (
-            <ul>
-              {categorias.map((products) => (
-                <li
+            <div>
+              {inputCategory.map((products) => (
+                <div
                   data-testid="product"
                   key={ products.id }
-                  thumbnail={ products.thumbnail }
-                  title={ products.title }
-                  price={ products.price }
-                />
+                >
+                  <img src={ products.thumbnail } alt="Product Images" />
+                  <h1>{ products.title }</h1>
+                  <p>{ products.price }</p>
+                </div>
               ))}
-            </ul>
+            </div>
           ) : <p>Nenhum produto foi encontrado</p>}
         </section>
       </div>
