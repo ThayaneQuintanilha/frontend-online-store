@@ -24,9 +24,9 @@ export default class Categorias extends Component {
   render() {
     const { categorias, categoriasID } = this.state;
     return (
-      <main>
+      <main className="main-category">
 
-        <section>
+        <section className="section-category">
           {categorias.map((cat) => (
             <label
               htmlFor={ cat.id }
@@ -45,7 +45,7 @@ export default class Categorias extends Component {
           ))}
         </section>
 
-        <section>
+        <section className="section-products">
           {categoriasID.map((products) => (
             <div key={ products.id } data-testid="product">
               <img

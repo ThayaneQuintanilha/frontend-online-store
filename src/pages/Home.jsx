@@ -33,7 +33,7 @@ export default class Home extends Component {
     const { inputValue, inputCategory, validation } = this.state;
 
     return (
-      <div>
+      <div className="home">
         <label htmlFor="Home">
           <input
             data-testid="query-input"
