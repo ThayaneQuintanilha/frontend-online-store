@@ -54,6 +54,7 @@ export default class Categorias extends Component {
               />
               <h1>{ products.title }</h1>
               <p>{ products.price }</p>
+              <button type="button">Adicionar</button>
             </div>
           ))}
         </section>

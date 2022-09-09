@@ -8,6 +8,7 @@
   margin: 30px;
 }
 
+
 .main-category {
   display: flex;
   flex-direction: row;
@@ -44,4 +45,29 @@
   justify-content: center;
   align-items: center;
   margin: 10px;
+}
+/* input products */
+
+.input-products {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid pink; */
+}
+
+.input-products img {
+  max-width: 100px;
+  margin-left: 50px
+}
+
+.input-products div {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 200px;
+  margin: 10px;
+  border: 1px solid pink;
+  padding: 20px;
 }
