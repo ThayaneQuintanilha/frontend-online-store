@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { getProductsFromCategoryAndQuery } from '../services/api';
+import Categorias from '../components/Categorias';
 
 export default class Home extends Component {
   state = {
@@ -84,6 +85,7 @@ export default class Home extends Component {
             </div>
           ) : <p>Nenhum produto foi encontrado</p>}
         </section>
+        <Categorias />
       </div>
     );
   }

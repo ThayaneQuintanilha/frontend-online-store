@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { getCategories, getProductById } from '../services/api';
+import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
 
 export default class Categorias extends Component {
   state = {
@@ -13,17 +13,13 @@ export default class Categorias extends Component {
   }
 
   handleClick = async (id) => {
-    const apiID = await getProductById(id);
+    const apiID = await getProductsFromCategoryAndQuery(id, undefined);
     this.setState({ categoriasID: apiID.results });
   };
 
   getApi = async () => {
     const api = await getCategories();
     this.setState({ categorias: api });
-  };
-
-  onclick = () => {
-    <Link to="/about" />;
   };
 
   render() {
@@ -52,21 +48,21 @@ export default class Categorias extends Component {
 
         <section className="section-products">
           {categoriasID.map((products) => (
-            <a
-              href={ `/product/details/${products.id}` }
-              onClick={ this.onclick }
-              key={ products.id }
-            >
-              <div data-testid="product">
-                <img
-                  src={ products.thumbnail }
-                  alt="Product Images"
-                />
-                <h1>{ products.title }</h1>
-                <p>{ products.price }</p>
-              </div>
+            <div key={ products.id }>
+              <Link
+                to={ `/about/${products.id}` }
+              >
+                <div data-testid="product" className="products-div">
+                  <img
+                    src={ products.thumbnail }
+                    alt="Product Images"
+                  />
+                  <h1>{ products.title }</h1>
+                  <p>{ products.price }</p>
+                </div>
+              </Link>
               <button type="button">Adicionar</button>
-            </a>
+            </div>
           ))}
         </section>
       </main>

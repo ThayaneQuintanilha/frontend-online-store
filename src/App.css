@@ -39,7 +39,7 @@
   text-align: center;
 }
 
-.section-products div {
+.products-div {
   align-items: center;
   border: 1px solid pink;
   display: flex;

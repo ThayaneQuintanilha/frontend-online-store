@@ -6,13 +6,15 @@ export default class About extends Component {
     categoriasID: [],
   };
 
-  componentDidMount() {
-    this.handleClick();
+  async componentDidMount() {
+    await this.handleClick();
   }
 
-  handleClick = async (id) => {
-    const apiID = await getProductById(id);
-    this.setState({ categoriasID: apiID.results });
+  handleClick = async () => {
+    // const { categoriasID } = this.state;
+    const apiID = await getProductById();
+    this.setState({ categoriasID: apiID });
+    console.log(apiID);
   };
 
   render() {
