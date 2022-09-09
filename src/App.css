@@ -1,6 +1,9 @@
 * {
+  color: inherit;
   margin: 0;
+  outline: none;
   padding: 0;
+  text-decoration: none;
 }
 
 .home {
@@ -36,17 +39,23 @@
   text-align: center;
 }
 
-.section-products div {
+.products-div {
   align-items: center;
   border: 1px solid pink;
   display: flex;
   flex-wrap: wrap;
-  height: 250px;
+  font-size: 15px;
+  height: 300px;
   justify-content: center;
-  margin: 10px;
-  max-width: 20%;
+  margin: 30px;
+  max-width: 100%;
   text-align: center;
-  width: 250px;
+  width: 300px;
+}
+
+.section-products button {
+  cursor: pointer;
+  padding: 20px;
 }
 
 .input-products {

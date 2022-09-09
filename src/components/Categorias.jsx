@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { getCategories, getProductById } from '../services/api';
+import { Link } from 'react-router-dom';
+import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
 
 export default class Categorias extends Component {
   state = {
@@ -11,8 +12,9 @@ export default class Categorias extends Component {
     this.getApi();
   }
 
-  handleClick = async (id) => {
-    const apiID = await getProductById(id);
+  handleClick = async ({ target }) => {
+    const { value } = target;
+    const apiID = await getProductsFromCategoryAndQuery(value, null);
     this.setState({ categoriasID: apiID.results });
   };
 
@@ -37,7 +39,8 @@ export default class Categorias extends Component {
               <input
                 type="radio"
                 name="categorys-data"
-                onClick={ () => this.handleClick(cat.id) }
+                value={ cat.id }
+                onClick={ this.handleClick }
                 // CALLBACK, POIS ELE DEVE EXECUTAR A FUNÇÃO DEPOIS DO CLICK E NÃO QUANDO ABRIR A PÁGINA!
               />
               { cat.name }
@@ -47,13 +50,21 @@ export default class Categorias extends Component {
 
         <section className="section-products">
           {categoriasID.map((products) => (
-            <div key={ products.id } data-testid="product">
-              <img
-                src={ products.thumbnail }
-                alt="Product Images"
-              />
-              <h1>{ products.title }</h1>
-              <p>{ products.price }</p>
+            <div key={ products.id }>
+              <Link
+                data-testid="product-detail-link"
+                to={ `/about/${products.id}` }
+              >
+                <div data-testid="product" className="products-div">
+                  <img
+                    src={ products.thumbnail }
+                    alt="Product Images"
+                  />
+                  <li>{ products.details }</li>
+                  <h1>{ products.title }</h1>
+                  <p>{ products.price }</p>
+                </div>
+              </Link>
               <button type="button">Adicionar</button>
             </div>
           ))}

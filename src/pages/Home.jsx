@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { getProductsFromCategoryAndQuery } from '../services/api';
+import Categorias from '../components/Categorias';
 
 export default class Home extends Component {
   state = {
@@ -71,19 +72,27 @@ export default class Home extends Component {
           {validation === true ? (
             <div className="input-products">
               {inputCategory.map((products) => (
-                <div
-                  data-testid="product"
-                  key={ products.id }
-                >
-                  <img src={ products.thumbnail } alt="Product Images" />
-                  <h1>{ products.title }</h1>
-                  <p>{ products.price }</p>
+                <div key={ products.id }>
+                  <Link
+                    data-testid="product-detail-link"
+                    to={ `/about/${products.id}` }
+                  >
+                    <div
+                      data-testid="product"
+                    >
+                      <img src={ products.thumbnail } alt="Product Images" />
+                      <h1>{ products.title }</h1>
+                      <p>{ products.price }</p>
+                      <button type="button">Adicionar</button>
+                    </div>
+                  </Link>
                   <button type="button">Adicionar</button>
                 </div>
               ))}
             </div>
           ) : <p>Nenhum produto foi encontrado</p>}
         </section>
+        <Categorias />
       </div>
     );
   }
