@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { getCategories, getProductById } from '../services/api';
 
 export default class Categorias extends Component {
@@ -19,6 +20,10 @@ export default class Categorias extends Component {
   getApi = async () => {
     const api = await getCategories();
     this.setState({ categorias: api });
+  };
+
+  onclick = () => {
+    <Link to="/about" />;
   };
 
   render() {
@@ -47,15 +52,21 @@ export default class Categorias extends Component {
 
         <section className="section-products">
           {categoriasID.map((products) => (
-            <div key={ products.id } data-testid="product">
-              <img
-                src={ products.thumbnail }
-                alt="Product Images"
-              />
-              <h1>{ products.title }</h1>
-              <p>{ products.price }</p>
+            <a
+              href={ `/product/details/${products.id}` }
+              onClick={ this.onclick }
+              key={ products.id }
+            >
+              <div data-testid="product">
+                <img
+                  src={ products.thumbnail }
+                  alt="Product Images"
+                />
+                <h1>{ products.title }</h1>
+                <p>{ products.price }</p>
+              </div>
               <button type="button">Adicionar</button>
-            </div>
+            </a>
           ))}
         </section>
       </main>
