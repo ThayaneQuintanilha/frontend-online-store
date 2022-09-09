@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
-import categories from '../__mocks__/categories';
+import { getProductsFromCategoryAndQuery } from '../services/api';
 
 export default class Home extends Component {
   state = {
     inputValue: '',
-    saveInput: '',
     categorias: [],
+    validation: false,
   };
 
   componentDidMount() {
@@ -15,23 +14,24 @@ export default class Home extends Component {
   }
 
   handleChange = ({ target }) => {
-    const { name, value } = target
+    const { name, value } = target;
     this.setState({
-      [name]: value
+      [name]: value,
     });
-  }
+  };
 
   handleClick = async () => {
-    const api = await getProductsFromCategoryAndQuery();
-    this.setState({ 
-      inputValue: '',
-      saveInput: inputValue,
-      categorias: api,
+    const { inputValue } = this.state;
+    const api = await getProductsFromCategoryAndQuery(inputValue);
+    this.setState({
+      categorias: api.results,
+      validation: true,
     });
-  }
+    console.log(api.results);
+  };
 
   render() {
-    const { inputValue, saveInput, categorias } = this.state;
+    const { inputValue, categorias, validation } = this.state;
 
     return (
       <div>
@@ -46,10 +46,10 @@ export default class Home extends Component {
             onChange={ this.handleChange }
           />
           <button
-          data-testid="query-button"
-          type="button"
-          name="inputValue"
-          onClick={ this.handleClick }
+            data-testid="query-button"
+            type="button"
+            name="inputValue"
+            onClick={ this.handleClick }
           >
             Pesquisar
           </button>
@@ -68,7 +68,19 @@ export default class Home extends Component {
           </p>
         </label>
         <section>
-          {console.log(categorias)}
+          {validation === true ? (
+            <ul>
+              {categorias.map((products) => (
+                <li
+                  data-testid="product"
+                  key={ products.id }
+                  thumbnail={ products.thumbnail }
+                  title={ products.title }
+                  price={ products.price }
+                />
+              ))}
+            </ul>
+          ) : <p>Nenhum produto foi encontrado</p>}
         </section>
       </div>
     );
