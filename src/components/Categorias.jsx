@@ -12,8 +12,9 @@ export default class Categorias extends Component {
     this.getApi();
   }
 
-  handleClick = async (id) => {
-    const apiID = await getProductsFromCategoryAndQuery(id, undefined);
+  handleClick = async ({ target }) => {
+    const { value } = target;
+    const apiID = await getProductsFromCategoryAndQuery(value, null);
     this.setState({ categoriasID: apiID.results });
   };
 
@@ -38,7 +39,8 @@ export default class Categorias extends Component {
               <input
                 type="radio"
                 name="categorys-data"
-                onClick={ () => this.handleClick(cat.id) }
+                value={ cat.id }
+                onClick={ this.handleClick }
                 // CALLBACK, POIS ELE DEVE EXECUTAR A FUNÇÃO DEPOIS DO CLICK E NÃO QUANDO ABRIR A PÁGINA!
               />
               { cat.name }
@@ -50,6 +52,7 @@ export default class Categorias extends Component {
           {categoriasID.map((products) => (
             <div key={ products.id }>
               <Link
+                data-testid="product-detail-link"
                 to={ `/about/${products.id}` }
               >
                 <div data-testid="product" className="products-div">
@@ -57,6 +60,7 @@ export default class Categorias extends Component {
                     src={ products.thumbnail }
                     alt="Product Images"
                   />
+                  <li>{ products.details }</li>
                   <h1>{ products.title }</h1>
                   <p>{ products.price }</p>
                 </div>
