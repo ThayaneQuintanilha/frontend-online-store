@@ -4,8 +4,8 @@
 }
 
 .home {
-  text-align: center;
   margin: 30px;
+  text-align: center;
 }
 
 
@@ -17,8 +17,8 @@
 .section-category {
   display: flex;
   flex-direction: column;
-  margin: 10px;
   justify-content: flex-start;
+  margin: 10px;
 }
 
 .section-category label {
@@ -27,47 +27,49 @@
 }
 
 .section-products {
-  display: flex;
   align-items: center;
-  flex-wrap: wrap;
-  justify-content: center;
+  border: 1px solid black;
+  display: flex;
+  flex-flow: row wrap;
   flex-direction: row;
+  justify-content: center;
   text-align: center;
-  border: 1px solid rgb(0, 0, 0);
 }
 
 .section-products div {
+  align-items: center;
   border: 1px solid pink;
   display: flex;
-  max-width: 20%;
   flex-wrap: wrap;
-  text-align: center;
+  height: 250px;
   justify-content: center;
-  align-items: center;
   margin: 10px;
+  max-width: 20%;
+  text-align: center;
+  width: 250px;
 }
-/* input products */
 
 .input-products {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
   align-items: center;
-  /* border: 1px solid pink; */
+  display: flex;
+  flex-flow: row wrap;
+  flex-direction: row;
+  justify-content: center;
 }
 
 .input-products img {
   max-width: 100px;
-  margin-left: 50px
 }
 
 .input-products div {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  width: 200px;
-  margin: 10px;
+  align-items: center;
   border: 1px solid pink;
-  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  height: 250px;
+  justify-content: center;
+  margin: 10px;
+  max-width: 20%;
+  text-align: center;
+  width: 250px;
 }
