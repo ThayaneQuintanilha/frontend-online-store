@@ -30,6 +30,15 @@ export default class Home extends Component {
     });
   };
 
+  localStorageCreate = (products) => {
+    if (!JSON.parse(localStorage.getItem('items'))) {
+      localStorage.setItem('items', JSON.stringify([]));
+    }
+
+    const getLocalStorage = JSON.parse(localStorage.getItem('items'));
+    localStorage.setItem('items', JSON.stringify([...getLocalStorage, products]));
+  };
+
   render() {
     const { inputValue, inputCategory, validation } = this.state;
 
@@ -70,9 +79,9 @@ export default class Home extends Component {
 
         <section>
           {validation === true ? (
-            <div className="input-products">
+            <div className="input-products-main">
               {inputCategory.map((products) => (
-                <div key={ products.id }>
+                <div className="input-products" key={ products.id }>
                   <Link
                     data-testid="product-detail-link"
                     to={ `/about/${products.id}` }
@@ -81,12 +90,17 @@ export default class Home extends Component {
                       data-testid="product"
                     >
                       <img src={ products.thumbnail } alt="Product Images" />
-                      <h1>{ products.title }</h1>
+                      <h1 data-testid="shopping-cart-product-name">{ products.title }</h1>
                       <p>{ products.price }</p>
-                      <button type="button">Adicionar</button>
                     </div>
                   </Link>
-                  <button type="button">Adicionar</button>
+                  <button
+                    data-testid="product-add-to-cart"
+                    type="button"
+                    onClick={ () => this.localStorageCreate(products) }
+                  >
+                    OLÁ
+                  </button>
                 </div>
               ))}
             </div>
