@@ -31,6 +31,7 @@ export default class Home extends Component {
   };
 
   localStorageCreate = (products) => {
+    products.qtd = 1;
     if (!JSON.parse(localStorage.getItem('items'))) {
       localStorage.setItem('items', JSON.stringify([]));
     }

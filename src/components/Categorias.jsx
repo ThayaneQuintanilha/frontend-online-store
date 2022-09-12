@@ -71,7 +71,10 @@ export default class Categorias extends Component {
                   />
                   <li>{ products.details }</li>
                   <h1 data-testid="shopping-cart-product-name">{ products.title }</h1>
-                  <p>{ products.price }</p>
+                  <p>
+                    { products.price }
+                    p
+                  </p>
                 </div>
               </Link>
               <button
