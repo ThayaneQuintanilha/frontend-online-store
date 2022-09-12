@@ -25,7 +25,7 @@ export default class About extends Component {
 
     const getLocalStorage = JSON.parse(localStorage.getItem('items'));
     localStorage.setItem('items', JSON.stringify([...getLocalStorage, categoriasID]));
-  }; 
+  };
 
   render() {
     const { categoriasID } = this.state;
