@@ -70,14 +70,18 @@
   max-width: 100px;
 }
 
-.input-products div {
-  align-items: center;
-  border: 1px solid pink;
+.input-products-main {
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
+
+}
+
+.input-products div {
+  border: 1px solid pink;
   height: 250px;
   justify-content: center;
-  margin: 10px;
+  margin: 30px;
   max-width: 20%;
   text-align: center;
   width: 250px;

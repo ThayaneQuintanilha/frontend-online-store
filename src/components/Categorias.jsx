@@ -23,6 +23,15 @@ export default class Categorias extends Component {
     this.setState({ categorias: api });
   };
 
+  localStorageCreate = (products) => {
+    if (!JSON.parse(localStorage.getItem('items'))) {
+      localStorage.setItem('items', JSON.stringify([]));
+    }
+
+    const getLocalStorage = JSON.parse(localStorage.getItem('items'));
+    localStorage.setItem('items', JSON.stringify([...getLocalStorage, products]));
+  };
+
   render() {
     const { categorias, categoriasID } = this.state;
     return (
@@ -61,11 +70,17 @@ export default class Categorias extends Component {
                     alt="Product Images"
                   />
                   <li>{ products.details }</li>
-                  <h1>{ products.title }</h1>
+                  <h1 data-testid="shopping-cart-product-name">{ products.title }</h1>
                   <p>{ products.price }</p>
                 </div>
               </Link>
-              <button type="button">Adicionar</button>
+              <button
+                onClick={ () => this.localStorageCreate(products) }
+                data-testid="product-add-to-cart"
+                type="button"
+              >
+                Adicionar
+              </button>
             </div>
           ))}
         </section>

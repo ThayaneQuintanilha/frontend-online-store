@@ -29,7 +29,7 @@ export default class About extends Component {
           alt="Imagem"
         />
         <p data-testid="product-detail-price">{ categoriasID.price }</p>
-        <Link to="/card">
+        <Link to="/card" data-testid="product-add-to-cart">
           <button
             type="button"
             data-testid="shopping-cart-button"
