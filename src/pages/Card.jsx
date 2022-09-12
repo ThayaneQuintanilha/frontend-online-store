@@ -16,7 +16,6 @@ export default class Card extends Component {
 
   render() {
     const { storage } = this.state;
-    console.log(storage);
     return (
       <div>
         <p data-testid="shopping-cart-empty-message"> Seu carrinho está vazio.</p>
