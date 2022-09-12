@@ -18,6 +18,15 @@ export default class About extends Component {
     this.setState({ categoriasID: apiID });
   };
 
+  localStorageCreate = (categoriasID) => {
+    if (!JSON.parse(localStorage.getItem('items'))) {
+      localStorage.setItem('items', JSON.stringify([]));
+    }
+
+    const getLocalStorage = JSON.parse(localStorage.getItem('items'));
+    localStorage.setItem('items', JSON.stringify([...getLocalStorage, categoriasID]));
+  };
+
   render() {
     const { categoriasID } = this.state;
     return (
@@ -37,6 +46,13 @@ export default class About extends Component {
             Carrinho
           </button>
         </Link>
+        <button
+          type="button"
+          data-testid="product-detail-add-to-cart"
+          onClick={ () => this.localStorageCreate(categoriasID) }
+        >
+          Adiciona
+        </button>
       </section>
     );
   }
