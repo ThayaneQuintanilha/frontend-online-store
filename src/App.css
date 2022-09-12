@@ -72,8 +72,8 @@
 
 .input-products-main {
   display: flex;
-  flex-direction: row;
   flex-flow: row wrap;
+  flex-direction: row;
 
 }
 
